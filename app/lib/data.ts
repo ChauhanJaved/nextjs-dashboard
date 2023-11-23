@@ -261,5 +261,15 @@ export async function fetchNumberOfInvoices() {
     throw new Error ('Failed to fetch total number of invoices');
   }
 }
-// const numberOfInvoices = await fetchNumberOfInvoices();
-// const numberOfCustomers = await fetchNumberOfCustomers();
+
+export async function fetchNumberOfCustomers() {
+  try {
+    const result = await sql`SELECT COUNT(*) AS count FROM customers`;
+    const numberOfCustomers = result.rows[0].count;
+    return numberOfCustomers as number;
+  } catch (error) {
+    console.error('Failed to fetch total number of customers', error);
+    throw new Error ('Failed to fetch total number of customers');
+  }  
+}
+
