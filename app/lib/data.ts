@@ -228,3 +228,19 @@ export async function getUser(email: string) {
     throw new Error('Failed to fetch user.');
   }
 }
+
+export async function fetchTotalPaidInvoices() {
+  try {
+    const result = await sql`SELECT COUNT(*) AS total_paid_invoices FROM invoices WHERE status='paid'`;
+    const totalPaidInvoices = result.rows[0].total_paid_invoices;
+    return totalPaidInvoices as number; 
+  } catch (error) {
+    console.error('Failed to fetch total paid invoices:', error);
+    throw new Error('Failed to fetch total paid invoices.');
+  }
+}
+
+// const totalPaidInvoices = await fetchTotalPaidInvoices();
+// const totalPendingInvoices = await fetchTotalPendingInvoices();
+// const numberOfInvoices = await fetchNumberOfInvoices();
+// const numberOfCustomers = await fetchNumberOfCustomers();
