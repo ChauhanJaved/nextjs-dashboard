@@ -251,7 +251,15 @@ export async function fetchTotalPendingInvoices() {
   }
 }
 
-// const totalPaidInvoices = await fetchTotalPaidInvoices();
-// const totalPendingInvoices = await fetchTotalPendingInvoices();
+export async function fetchNumberOfInvoices() {
+  try {
+    const result = await sql`SELECT COUNT(*) AS count FROM invoices`;
+    const numberOfInvoices = result.rows[0].count;
+    return numberOfInvoices as number;
+  } catch (error) {
+    console.error('Failed to fetch total number of invoices', error);
+    throw new Error ('Failed to fetch total number of invoices');
+  }
+}
 // const numberOfInvoices = await fetchNumberOfInvoices();
 // const numberOfCustomers = await fetchNumberOfCustomers();
