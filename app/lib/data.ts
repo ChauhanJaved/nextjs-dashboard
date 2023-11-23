@@ -240,6 +240,17 @@ export async function fetchTotalPaidInvoices() {
   }
 }
 
+export async function fetchTotalPendingInvoices() {
+  try {
+    const result = await sql`SELECT COUNT(*) AS count FROM invoices WHERE status='pending'`;
+    const totalPendingInvoices = result.rows[0].count;
+    return totalPendingInvoices as number; 
+  } catch (error) {
+    console.error('Failed to fetch total pending invoices:', error);
+    throw new Error('Failed to fetch total pending invoices.');
+  }
+}
+
 // const totalPaidInvoices = await fetchTotalPaidInvoices();
 // const totalPendingInvoices = await fetchTotalPendingInvoices();
 // const numberOfInvoices = await fetchNumberOfInvoices();
