@@ -12,7 +12,7 @@ export default async function InvoicesTable({
   currentPage: number;
 }) {
   const invoices = await fetchFilteredInvoices(query, currentPage);
-
+  
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
@@ -20,9 +20,9 @@ export default async function InvoicesTable({
           <div className="md:hidden">
             {invoices?.map((invoice) => (
               <div
-                key={invoice.id}
+                key={invoice.id}                
                 className="mb-2 w-full rounded-md bg-white p-4"
-              >
+              >                
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
                     <div className="mb-2 flex items-center">
